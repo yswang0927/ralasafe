@@ -1,0 +1,18 @@
+1、此maven工程是从官方的发行包ralasafe_demo(zh)-1.2-v20110914.rar、ralasafe_src-1.2-v20110914.zip更改而来。
+2、因原工程有些所依赖的版本的jar的在maven的中央仓库没有，所以此maven工程有些依赖的jar的版本跟原工程不一样。
+以下是这部分jar包异同的说明，其中左边是原项目jar包，右边是此maven项目的jar包。
+castor-1.2-codegen.jar         castor-1.3-codegen.jar
+castor-1.2-ddlgen.jar          castor-1.3-ddlgen.jar
+castor-1.2-xml.jar             castor-1.3-xml.jar
+commons-pool-1.4.jar           commons-pool-1.2.jar
+jta1.0.1.jar                   jta1.1.jar
+velocity-dep-1.5.jar           velocity-dep-1.4.jar
+xerces.jar(1.0)                xerces1.2.3.jar
+另外castor-1.2-anttasks.jar、jdbc-se2.0.jar这两jar包在原项目是有的，但中央仓库没有。若有自己的私服，可以自行添加。
+经测试以上jar包的更改，对项目的正确运行并没有影响。
+3、同原项目一样，有以下几个jsp在ide中编译可能会有错误，但这不影响项目的正确运行。
+/ralasafe/src/main/webapp/ralasafe/common/nav.jsp
+/ralasafe/src/main/webapp/ralasafe/common/searchForm.jsp
+/ralasafe/src/main/webapp/ralasafe/menu.jsp
+4、加了jetty插件，可以用jetty:run运行项目。
+5、运行配置同官方的原配置一样，参看官方地址http://www.ralasafe.cn。最后，对ralasafe作者的贡献表示感谢。

@@ -4,55 +4,57 @@
 	<groupId>xjt</groupId>
 	<artifactId>ralasafe</artifactId>
 	<packaging>war</packaging>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>ralasafe Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<properties>
-		<project.jdk.version>1.6</project.jdk.version>
+		<project.jdk.version>1.8</project.jdk.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<jetty.version>7.6.8.v20121106</jetty.version>
 	</properties>
 	<dependencies>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>3.8.1</version>
-			<scope>test</scope>
-		</dependency>
+
 		<dependency>
 			<groupId>org.beanshell</groupId>
 			<artifactId>bsh</artifactId>
 			<version>2.0b4</version>
 		</dependency>
+
 		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+		</dependency>
+
+		<!--<dependency>
 			<groupId>org.codehaus.castor</groupId>
 			<artifactId>castor</artifactId>
-			<version>1.2</version>
-		</dependency>
+			<version>1.4.1</version>
+		</dependency>-->
 		<dependency>
 			<groupId>org.codehaus.castor</groupId>
 			<artifactId>castor-jdo</artifactId>
-			<version>1.3</version>
+			<version>1.3.2</version>
 		</dependency>
 		<dependency>
 			<groupId>org.codehaus.castor</groupId>
 			<artifactId>castor-ddlgen</artifactId>
-			<version>1.3</version>
+			<version>1.3.2</version>
 		</dependency>
 		<dependency>
 			<groupId>org.codehaus.castor</groupId>
 			<artifactId>castor-codegen</artifactId>
-			<version>1.3</version>
+			<version>1.4.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.codehaus.castor</groupId>
 			<artifactId>castor-xml</artifactId>
-			<version>1.3</version>
+			<version>1.4.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.codehaus.castor</groupId>
 			<artifactId>castor-xml-schema</artifactId>
-			<version>1.2</version>
+			<version>1.4.1</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-codec</groupId>
@@ -102,7 +104,7 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>5.0.8</version>
+			<version>5.1.48</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.velocity</groupId>
@@ -125,7 +127,7 @@
 			<version>1.1</version>
 		</dependency>
 		<!-- jetty -->
-		<dependency>
+		<!--<dependency>
 			<groupId>org.eclipse.jetty.aggregate</groupId>
 			<artifactId>jetty-webapp</artifactId>
 			<version>${jetty.version}</version>
@@ -139,8 +141,10 @@
 			<groupId>org.eclipse.jetty</groupId>
 			<artifactId>jetty-start</artifactId>
 			<version>${jetty.version}</version>
-		</dependency>
+		</dependency>-->
+
 	</dependencies>
+
 	<build>
 		<finalName>ralasafe</finalName>
 		<pluginManagement>
@@ -157,7 +161,7 @@
 						<showWarnings>true</showWarnings>
 					</configuration>
 				</plugin>
-		        <plugin>
+		        <!--<plugin>
 					<groupId>org.mortbay.jetty</groupId>
 					<artifactId>jetty-maven-plugin</artifactId>
 					<version>${jetty.version}</version>
@@ -179,7 +183,7 @@
 							</systemProperty>
 						</systemProperties>
 					</configuration>
-				</plugin>
+				</plugin>-->
 			</plugins>
 		</pluginManagement>
 	</build>

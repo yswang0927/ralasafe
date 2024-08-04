@@ -1,19 +1,19 @@
 /*
-* Licensed to the Apache Software Foundation (ASF) under one or more
-* contributor license agreements.  See the NOTICE file distributed with
-* this work for additional information regarding copyright ownership.
-* The ASF licenses this file to You under the Apache License, Version 2.0
-* (the "License"); you may not use this file except in compliance with
-* the License.  You may obtain a copy of the License at
-*
-*     http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
 
 package filter;
@@ -75,39 +75,38 @@ public final class RequestDumperFilter implements Filter {
      * current filter stack, including the ultimately invoked servlet.
      *
      * @param request The servlet request we are processing
-     * @param result The servlet response we are creating
-     * @param chain The filter chain we are processing
-     *
-     * @exception IOException if an input/output error occurs
-     * @exception ServletException if a servlet error occurs
+     * @param result  The servlet response we are creating
+     * @param chain   The filter chain we are processing
+     * @throws IOException      if an input/output error occurs
+     * @throws ServletException if a servlet error occurs
      */
     public void doFilter(ServletRequest request, ServletResponse response,
                          FilterChain chain)
-	throws IOException, ServletException {
+            throws IOException, ServletException {
 
         if (filterConfig == null)
-	    return;
+            return;
 
-	// Render the generic servlet request properties
-	StringWriter sw = new StringWriter();
-	PrintWriter writer = new PrintWriter(sw);
-	writer.println("Request Received at " +
-		       (new Timestamp(System.currentTimeMillis())));
-	writer.println(" characterEncoding=" + request.getCharacterEncoding());
-	writer.println();
-	Enumeration names = request.getParameterNames();
-	writer.println( "----------------parameters-----------" );
-	while (names.hasMoreElements()) {
-	    String name = (String) names.nextElement();
-	    writer.print("         " + name + "=");
-	    String values[] = request.getParameterValues(name);
-	    for (int i = 0; i < values.length; i++) {
-	        if (i > 0)
-		    writer.print(", ");
-		writer.print(values[i]);
-	    }
-	    writer.println();
-	}
+        // Render the generic servlet request properties
+        StringWriter sw = new StringWriter();
+        PrintWriter writer = new PrintWriter(sw);
+        writer.println("Request Received at " +
+                (new Timestamp(System.currentTimeMillis())));
+        writer.println(" characterEncoding=" + request.getCharacterEncoding());
+        writer.println();
+        Enumeration names = request.getParameterNames();
+        writer.println("----------------parameters-----------");
+        while (names.hasMoreElements()) {
+            String name = (String) names.nextElement();
+            writer.print("         " + name + "=");
+            String values[] = request.getParameterValues(name);
+            for (int i = 0; i < values.length; i++) {
+                if (i > 0)
+                    writer.print(", ");
+                writer.print(values[i]);
+            }
+            writer.println();
+        }
 //	writer.println("          protocol=" + request.getProtocol());
 //	writer.println("        remoteAddr=" + request.getRemoteAddr());
 //	writer.println("        remoteHost=" + request.getRemoteHost());
@@ -116,34 +115,34 @@ public final class RequestDumperFilter implements Filter {
 //	writer.println("        serverPort=" + request.getServerPort());
 //	writer.println("          isSecure=" + request.isSecure());
 
-	// Render the HTTP servlet request properties
-	if (request instanceof HttpServletRequest) {
-	    writer.println("---------------------------------------------");
-	    HttpServletRequest hrequest = (HttpServletRequest) request;
-	   //writer.println("       contextPath=" + hrequest.getContextPath());
-	    
+        // Render the HTTP servlet request properties
+        if (request instanceof HttpServletRequest) {
+            writer.println("---------------------------------------------");
+            HttpServletRequest hrequest = (HttpServletRequest) request;
+            //writer.println("       contextPath=" + hrequest.getContextPath());
+
 //	    names = hrequest.getHeaderNames();
 //	    while (names.hasMoreElements()) {
 //	        String name = (String) names.nextElement();
 //		String value = hrequest.getHeader(name);
 //	        writer.println("            header=" + name + "=" + value);
 //	    }
-	    //writer.println("            method=" + hrequest.getMethod());
-	    writer.println("          pathInfo=" + hrequest.getPathInfo());
-	    writer.println("       queryString=" + hrequest.getQueryString());
-	    //writer.println("        remoteUser=" + hrequest.getRemoteUser());
-	    //writer.println("requestedSessionId=" +
-		//	   hrequest.getRequestedSessionId());
-	    writer.println("        requestURI=" + hrequest.getRequestURI());
-	    writer.println("       servletPath=" + hrequest.getServletPath());
-	}
-	writer.println("=============================================");
-	System.out.println( sw.getBuffer().toString() );
-	// Log the resulting string
-	writer.flush();
-	filterConfig.getServletContext().log(sw.getBuffer().toString());
+            //writer.println("            method=" + hrequest.getMethod());
+            writer.println("          pathInfo=" + hrequest.getPathInfo());
+            writer.println("       queryString=" + hrequest.getQueryString());
+            //writer.println("        remoteUser=" + hrequest.getRemoteUser());
+            //writer.println("requestedSessionId=" +
+            //	   hrequest.getRequestedSessionId());
+            writer.println("        requestURI=" + hrequest.getRequestURI());
+            writer.println("       servletPath=" + hrequest.getServletPath());
+        }
+        writer.println("=============================================");
+        System.out.println(sw.getBuffer().toString());
+        // Log the resulting string
+        writer.flush();
+        filterConfig.getServletContext().log(sw.getBuffer().toString());
 
-	// Pass control on to the next filter
+        // Pass control on to the next filter
         chain.doFilter(request, response);
 
     }
@@ -156,7 +155,7 @@ public final class RequestDumperFilter implements Filter {
      */
     public void init(FilterConfig filterConfig) throws ServletException {
 
-	this.filterConfig = filterConfig;
+        this.filterConfig = filterConfig;
 
     }
 
@@ -166,12 +165,12 @@ public final class RequestDumperFilter implements Filter {
      */
     public String toString() {
 
-	if (filterConfig == null)
-	    return ("RequestDumperFilter()");
-	StringBuffer sb = new StringBuffer("RequestDumperFilter(");
-	sb.append(filterConfig);
-	sb.append(")");
-	return (sb.toString());
+        if (filterConfig == null)
+            return ("RequestDumperFilter()");
+        StringBuffer sb = new StringBuffer("RequestDumperFilter(");
+        sb.append(filterConfig);
+        sb.append(")");
+        return (sb.toString());
 
     }
 

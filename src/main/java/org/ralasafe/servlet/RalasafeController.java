@@ -102,6 +102,7 @@ public class RalasafeController extends HttpServlet {
 			realPath+="/";
 		}
 		String datasourceDir = realPath	+ "WEB-INF/ralasafe/";
+		repositoryDir = realPath + "xml/";
 
 		Startup.startup(datasourceDir, repositoryDir);
 		
